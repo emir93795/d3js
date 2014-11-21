@@ -7,8 +7,9 @@
     </head>
     <body>
         <script type="text/javascript">
-			var texts = ["Info prèvia", "Acolliment", "Semestre", "Fi"];
-			var w = 205; //Rectangle + blank space width
+            var spaces = [1,2,3,4]
+	    var texts = ["Info prèvia", "Acolliment", "Semestre", "Fi"];
+	    var w = 205; //Rectangle + blank space width
             var svgContainer = d3.select("body")
                                  .append("svg")
                                  .attr("width", 1000)
@@ -30,14 +31,14 @@
                                  .attr("x",function(d,i){
                                          return i*w+1; })
                                  .attr("y", 10)
-								                 .attr("stroke", "black")
-								                 .attr("stroke-width",2)
+				 .attr("stroke", "black")
+				 .attr("stroke-width",2)
                                  .style("fill", function(d,i) {
                                         var color;
                                         if(i==0) {color = "#66CC00";
                                         } else if (i==1) { color="#66CC33";
-										} else if (i==2) {color="#66CC66";
-										} else color="#66CC99";
+					} else if (i==2) {color="#66CC66";
+					} else color="#66CC99";
                                           return color; });
 												
             var textAttributes = texT
@@ -46,9 +47,9 @@
                                  .attr("x", function(d,i){
                                         return i*w+60; })
                                  .attr("y", 45)
-								                 .attr("font-family", "sans-serif")
-								                 .attr("font-size", "20px")
-								                 .attr("fill", "black");
-								                         </script>
+				 .attr("font-family", "sans-serif")
+				 .attr("font-size", "20px")
+				 .attr("fill", "black");
+	</script>
     </body>
 </html>

@@ -7,13 +7,35 @@
     </head>
     <body>
         <script type="text/javascript">
-            var spaces = [1,2,3,4]
-	    var texts = ["Info prèvia", "Acolliment", "Semestre", "Fi"];
-	    var w = 205; //Rectangle + blank space width
+			var spaces = [1,2,3,4]
+			var texts = ["INFO PREVIA", "ACOLLIMENT", "SEMESTRE", "FI"];
+			var w = 205; //Rectangle + blank space width
+			
             var svgContainer = d3.select("body")
                                  .append("svg")
                                  .attr("width", 1000)
-                                 .attr("height",150);
+                                 .attr("height",500);
+								 
+			// Gradient definition
+			var gradient = svgContainer.append("svgContainer:defs")
+				.append("svgContainer:linearGradient")
+				.attr("id", "gradient")
+				.attr("x1", "0%")
+				.attr("y1", "0%")
+				.attr("x2", "100%")
+				.attr("y2", "100%")
+				.attr("spreadMethod", "pad");
+
+			// Gradient colors
+			gradient.append("svgContainer:stop")
+				.attr("offset", "0%")
+				.attr("stop-color", "#cc9900")
+				.attr("stop-opacity", 1);
+
+			gradient.append("svgContainer:stop")
+				.attr("offset", "100%")
+				.attr("stop-color", "#ffd28a")
+				.attr("stop-opacity", 1);
 										
             var rectangle = svgContainer.selectAll("rect")
                                  .data(spaces)
@@ -26,30 +48,27 @@
                                  .append("text");
 										
             var rectangleAttributes = rectangle
-                                 .attr("width",150 )
+                                 .attr("width",200)
                                  .attr("height",50)
                                  .attr("x",function(d,i){
                                          return i*w+1; })
                                  .attr("y", 10)
-				 .attr("stroke", "black")
-				 .attr("stroke-width",2)
-                                 .style("fill", function(d,i) {
-                                        var color;
-                                        if(i==0) {color = "#66CC00";
-                                        } else if (i==1) { color="#66CC33";
-					} else if (i==2) {color="#66CC66";
-					} else color="#66CC99";
-                                          return color; });
+								 .attr("rx", 30)
+								 .attr("ry", 10)
+								 .attr("stroke", "black")
+								 .attr("stroke-width",2)
+                                 .style("fill", 'url(#gradient)');
 												
             var textAttributes = texT
                                  .text(function(d){
                                         return d; })
                                  .attr("x", function(d,i){
-                                        return i*w+35; })
-                                 .attr("y", 40)
-				 .attr("font-family", "sans-serif")
-				 .attr("font-size", "18px")
-				 .attr("fill", "black");
-	</script>
+                                        return (i*w+1)+100; })
+                                 .attr("y", 42)
+								 .attr("font-family", "Franklin Gothic")
+								 .attr("font-size", "20px")
+								 .attr("fill", "black")
+								 .style("text-anchor", "middle");
+        </script>
     </body>
 </html>

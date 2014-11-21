@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+			var texts = ["Info prèvia", "Acolliment", "Semestre", "Fi"];
+			var w = 205; //Rectangle + blank space width
+            var svgContainer = d3.select("body")
+                                 .append("svg")
+                                 .attr("width", 1000)
+                                 .attr("height",150);
+										
+            var rectangle = svgContainer.selectAll("rect")
+                                 .data(spaces)
+                                 .enter()
+                                 .append("rect");
+										
+            var texT = svgContainer.selectAll("text")
+                                 .data(texts)
+                                 .enter()
+                                 .append("text");
+										
+            var rectangleAttributes = rectangle
+                                 .attr("width",200 )
+                                 .attr("height",60)
+                                 .attr("x",function(d,i){
+                                         return i*w+1; })
+                                 .attr("y", 10)
+								                 .attr("stroke", "black")
+								                 .attr("stroke-width",2)
+                                 .style("fill", function(d,i) {
+                                        var color;
+                                        if(i==0) {color = "#66CC00";
+                                        } else if (i==1) { color="#66CC33";
+										} else if (i==2) {color="#66CC66";
+										} else color="#66CC99";
+                                          return color; });
+												
+            var textAttributes = texT
+                                 .text(function(d){
+                                        return d; })
+                                 .attr("x", function(d,i){
+                                        return i*w+60; })
+                                 .attr("y", 45)
+								                 .attr("font-family", "sans-serif")
+								                 .attr("font-size", "20px")
+								                 .attr("fill", "black");
+								                         </script>
+    </body>
+</html>
